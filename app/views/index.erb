@@ -1,0 +1,27 @@
+<% if @sign_out_message %>
+  <h3><%= @sign_out_message %></h3>
+<% end %>
+
+<% if current_user %>
+
+  <h1> Welcome <%= current_user.first_name %> </h1>
+  <%= erb :_signout %>
+
+  <h4>Click here to create a recipe!</h4>
+  <form action="/recipe/new">
+    <input type="submit" value="Create Recipe">
+  </form>
+
+<% else %>
+
+<h1>Welcome to the Home Page</h1>
+
+<form action="/login">
+  <input type="submit" value="Log In">
+</form>
+
+<form action="/signup">
+  <input type="submit" value="Sign Up">
+</form>
+
+<% end %>
