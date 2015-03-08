@@ -7,6 +7,22 @@
   <h1> Welcome <%= current_user.first_name %> </h1>
   <%= erb :_signout %>
 
+  <h3>Here are your recipes:</h3>
+
+  <% current_user.recipes.each do |recipe| %>
+
+    <h4><%= recipe.name.capitalize %></h4>
+
+      <% recipe.ingredients.each do |ingredient| %>
+
+        <h5><%= recipe.get_quantity_of(ingredient) %> <%= recipe.get_quantity_description_of(ingredient) %> <%= ingredient.name %></h5>
+
+      <% end %>
+
+    <p><%= recipe.instructions %></p>
+
+  <% end %>
+
   <h4>Click here to create a recipe!</h4>
   <form action="/recipe/new">
     <input type="submit" value="Create Recipe">

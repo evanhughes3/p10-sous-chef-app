@@ -47,8 +47,17 @@ get '/recipe/new' do
 end
 
 post '/recipe/create' do
+  user = User.find(session[:id])
+
   recipe = Recipe.create(params[:recipe])
-  ingredient = Ingredient.create(params[:ingedient])
-  recipe.set_quantity_of(ingredient, params[:quantity])
+  puts recipe
+  ingredient = Ingredient.create(params[:ingredient])
+  puts ingredient.name
+  recipe.ingredients << ingredient
+  recipe.set_quantity_of(ingredient, params[:quantity], params[:quantity_description])
+
+  user.recipes << recipe
+
+  erb :index
 
 end

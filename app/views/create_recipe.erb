@@ -2,11 +2,11 @@
   <div class="errors"><%= @error %></div>
 <% end %>
 
-<form action="/recipe/create'" method="post">
+<form action='/recipe/create' method="post">
   <input type="text" name="recipe[name]" placeholder="Recipe Title">
-  <input type="text" name="ingedient[name]" placeholder="Ingredient">
-  <input type="text" name="recipe_ingredient[quantity]" placeholder="Quantity">
-  <input type="text" name="recipe_ingredient[quantity_description]" placeholder="oz, cups, lbs?">
+  <input type="text" name="ingredient[name]" placeholder="Ingredient">
+  <input type="text" name="quantity" placeholder="Quantity">
+  <input type="text" name="quantity_description" placeholder="oz, cups, lbs?">
   <textarea rows="10" cols="50" name="recipe[instructions]" placeholder="Describe your recipe here!"></textarea>
   <input type="submit" value="submit">
 </form>
