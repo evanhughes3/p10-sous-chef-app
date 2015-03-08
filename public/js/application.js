@@ -4,12 +4,12 @@ $(document).ready(function() {
   // when we try to bind to them
   $("#search").click(function(event){
     event.preventDefault();
-    var APP_ID = 'b68a708c'
-    var APP_KEY = 'c990231d1ec74289fff36220ae4ba6fb'
+    APP_ID = 'b68a708c'
+    APP_KEY = 'c990231d1ec74289fff36220ae4ba6fb'
     var keywords = $('#input-text').val();
     console.log(keywords)
     // var url = "http://www.yummly.com/v1/api/recipes?q="+keywords+"&_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&";
-    var url = "http://api.yummly.com/v1/api/recipes?_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&" + keywords;
+    var url = "http://api.yummly.com/v1/api/recipes?_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&" + keywords + "&requirePictures=true";
     $.ajax({
       type: 'GET',
       url: url,
@@ -25,7 +25,6 @@ $(document).ready(function() {
         //   }).done(function(serverData) {
         //     // append to DOM or render in some fashion
         //   })
-    debugger
       console.log(response);
       // $('#results').html(parseData(response))
       displayRecipes(response)
@@ -52,15 +51,15 @@ $(document).ready(function() {
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
 });
 
-function parseData(currentObject, key) {
-  for (var property in currentObject) {
-    if (typeof currentObject[property] === "object") {
-      parseData(currentObject[property], property);
-    } else {
-     $('#results').append(property + ' -- ' + currentObject[property] + '<br />');
-   }
- }
-}
+// function parseData(currentObject, key) {
+//   for (var property in currentObject) {
+//     if (typeof currentObject[property] === "object") {
+//       parseData(currentObject[property], property);
+//     } else {
+//      $('#results').append(property + ' -- ' + currentObject[property] + '<br />');
+//    }
+//  }
+// }
 
 function displayRecipes(response) {
   matches = response.matches
@@ -73,12 +72,21 @@ function displayRecipes(response) {
     var recipeName = element.recipeName
     var displayName = element.displayName
     var totalTime = element.totalTimeInSeconds
+    var courses = element.attributes.course
+    var flavors = element.flavors
+    var url = 'http://api.yummly.com/v1/api/recipe/' + recipeId + '?_app_id=' + APP_ID + '&_app_key=' + APP_KEY
 
-    $('#results').append('<h1>' + recipeName + '</h1>')
+    $('#results').append('<h1 class="viewRecipe"><a href="' + url + '">' + recipeName + '</a></h1>')
     $('#results').append('<img src=' + img + '>')
     ingredients_array.forEach(function(element, index) {
       $('#results').append('<p>' + (index + 1) + '.  '+ element + '</p>')
     })
+    courses.forEach(function(element) {
+      $('#results').append('<p>Courses: ' + element + '</p>')
+    })
+    for(var flavor in flavors) {
+      $('#results').append('<p>' + flavor + ' : ' + (flavors[flavor] * 10).toFixed(1) + '% </p>')
+    }
 
     $('#results').append('<p>Rating: ' + rating + ' stars</p>')
     $('#results').append('<p>Total Time: ' + (totalTime / 60) + ' minutes</p>')
