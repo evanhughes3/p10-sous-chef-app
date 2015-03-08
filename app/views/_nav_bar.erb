@@ -1,0 +1,21 @@
+<nav>
+  <div class="nav-container">
+    <form action="/recipe/new">
+      <input type="submit" value="Create New Recipe">
+    </form>
+    <a href="#">About Sous-Chef</a>
+    <a href="/recipe/search">Search Recipes</a>
+    <a href="#">Generate Shopping List</a>
+
+  <% if current_user %>
+    <%= erb :_signout %>
+  <% else %>
+    <form action="/login">
+      <input type="submit" value="Log In">
+    </form>
+    <form action="/signup">
+      <input type="submit" value="Sign Up">
+    </form>
+  <% end %>
+  </div>
+</nav>

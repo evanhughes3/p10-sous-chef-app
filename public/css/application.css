@@ -1,0 +1,10 @@
+nav {
+  font-size: 20px;
+  display: inline;
+}
+
+.nav-container {
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 20px;
+}

@@ -40,6 +40,7 @@ delete '/signout/:id' do
   # sign-out -- invoked
   session[:id] = nil
   @sign_out_message = "You have been successfully signed out"
+  redirect '/'
 end
 
 get '/recipe/new' do
@@ -61,3 +62,17 @@ post '/recipe/create' do
   erb :index
 
 end
+
+get '/recipe/search' do
+  erb :search
+end
+
+# get 'http://api.yummly.com/v1/api/recipe/Mediterranean-Salad-603851?_app_id=b68a708c&_app_key=c990231d1ec74289fff36220ae4ba6fb' do
+
+# end
+
+# get ''http://api.yummly.com/v1/api/ do
+#   recipes?_app_id=b68a708c&_app_key=c990231d1ec74289fff36220ae4ba6fb&recipes?q=salad
+
+# end
+# http://api.yummly.com/v1/api/recipes?_app_id=b68a708c&_app_key=c990231d1ec74289fff36220ae4ba6fb&recipes?q=salad
