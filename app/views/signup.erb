@@ -1,12 +1,39 @@
-<% if @error %>
-  <div class="errors"><%= @error %></div>
-<% end %>
-
-<form action="/signup" method="post">
+<!-- <form action="/signup" method="post">
   <input type="text" name="first_name" placeholder="First Name">
   <input type="text" name="last_name" placeholder="Last Name">
   <input type="text" name="email" placeholder="Email">
   <input type="text" name="username" placeholder="Username">
   <input type="password" name="password" placeholder="Password">
   <input type="submit" value="submit">
-</form>
+</form> -->
+
+<div class="form-container">
+  <% if @error %>
+  <div class="errors"><%= @error %></div>
+  <% end %>
+  <form action="/signup" method="post" role="form">
+    <div class="form-group">
+      <label for="email">First Name</label>
+      <input type="text" name="first_name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email">Last Name</label>
+      <input type="text" name="last_name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" name="email" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email">Username</label>
+      <input type="text" name="username" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password</label>
+      <input type="password" name="password" class="form-control" id="pwd">
+    </div>
+    <div class="form-group">
+      <button id="login-submit" type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </form>
+</div>

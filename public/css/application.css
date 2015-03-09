@@ -1,10 +1,12 @@
-nav {
-  font-size: 20px;
-  display: inline;
+.form-group {
+  padding: 5px 200px;
 }
 
-.nav-container {
-    margin-left: 40px;
-    margin-right: 40px;
-    padding: 20px;
+.form-container {
+  margin: 100px 600px 5px 600px;
+  border:1px solid black;
+}
+
+#login-submit {
+
 }

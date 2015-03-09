@@ -27,13 +27,31 @@ $(document).ready(function() {
         //   })
       console.log(response);
       // $('#results').html(parseData(response))
-      displayRecipes(response)
+      displayAllRecipes(response)
     }
     }).fail(function(){
       console.log("failed")
       })
+   })
 
-  })
+    $('.viewRecipe').click(function(event) {
+      event.preventDefault();
+      alert('yayaya')
+      url = $('.viewRecipe').attr('href')
+
+      $.ajax({
+        type: 'GET',
+        url: url, // recipe/:id
+        data: url
+        dataType: 'JSONP',
+        success: function(response) {
+          console.log('inside display recipe!');
+          displayRecipe(response)
+        }
+      }).fail(function(){
+        console.log('failed')
+      })
+    })
   //      })
   //    .done(function(response){
   //       console.log("success!")
@@ -51,17 +69,8 @@ $(document).ready(function() {
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
 });
 
-// function parseData(currentObject, key) {
-//   for (var property in currentObject) {
-//     if (typeof currentObject[property] === "object") {
-//       parseData(currentObject[property], property);
-//     } else {
-//      $('#results').append(property + ' -- ' + currentObject[property] + '<br />');
-//    }
-//  }
-// }
 
-function displayRecipes(response) {
+function displayAllRecipes(response) {
   matches = response.matches
 
   matches.forEach(function(element) {
@@ -76,7 +85,7 @@ function displayRecipes(response) {
     var flavors = element.flavors
     var url = 'http://api.yummly.com/v1/api/recipe/' + recipeId + '?_app_id=' + APP_ID + '&_app_key=' + APP_KEY
 
-    $('#results').append('<h1 class="viewRecipe"><a href="' + url + '">' + recipeName + '</a></h1>')
+    $('#results').append('<h1><a class="viewRecipe" href="' + url + '">' + recipeName + '</a></h1>')
     $('#results').append('<img src=' + img + '>')
     ingredients_array.forEach(function(element, index) {
       $('#results').append('<p>' + (index + 1) + '.  '+ element + '</p>')
@@ -91,6 +100,12 @@ function displayRecipes(response) {
     $('#results').append('<p>Rating: ' + rating + ' stars</p>')
     $('#results').append('<p>Total Time: ' + (totalTime / 60) + ' minutes</p>')
   })
+
+}
+
+function displayRecipe(response) {
+  console.log("yayayaya")
+
 
 }
 
@@ -112,3 +127,13 @@ function displayRecipes(response) {
 // $(document).ready(function() {
 //   getSquirrels();
 // });
+
+// function parseData(currentObject, key) {
+//   for (var property in currentObject) {
+//     if (typeof currentObject[property] === "object") {
+//       parseData(currentObject[property], property);
+//     } else {
+//      $('#results').append(property + ' -- ' + currentObject[property] + '<br />');
+//    }
+//  }
+// }

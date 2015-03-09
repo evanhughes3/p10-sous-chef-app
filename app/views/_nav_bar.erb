@@ -1,21 +1,41 @@
-<nav>
-  <div class="nav-container">
-    <form action="/recipe/new">
-      <input type="submit" value="Create New Recipe">
-    </form>
-    <a href="#">About Sous-Chef</a>
-    <a href="/recipe/search">Search Recipes</a>
-    <a href="#">Generate Shopping List</a>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="#">
+           <img alt="Sous-Chef" src="souschef-skinny.png">
+        </a>
+    </div>
 
-  <% if current_user %>
-    <%= erb :_signout %>
-  <% else %>
-    <form action="/login">
-      <input type="submit" value="Log In">
-    </form>
-    <form action="/signup">
-      <input type="submit" value="Sign Up">
-    </form>
-  <% end %>
-  </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">About</a></li>
+        <li><a href="/recipe/new">Create New Recipe</a></li>
+        <li><a href="/recipe/search">Search Recipes</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <%= erb :_signout %>
+        <% else %>
+        <form action="/signup">
+          <button type="submit" class="btn btn-default navbar-btn">Sign Up</button>
+      <!-- <input type="submit" value="Sign Up"> -->
+         </form>
+          <form action="/login">
+            <button type="submit" class="btn btn-default navbar-btn">Log in</button>
+          </form>
+
+        <% end %>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>

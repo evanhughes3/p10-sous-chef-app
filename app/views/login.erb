@@ -1,9 +1,33 @@
-<% if @error %>
-  <div class="errors"><%= @error %></div>
-<% end %>
 
-<form action="/login" method="post">
+<!-- <form action="/login" method="post">
   <input type="text" name="username" placeholder="username">
   <input type="text" name="password" placeholder="password">
   <input type="submit" value="submit">
 </form>
+-->
+<!-- <form action="/login" method="post">
+<div class="form-group">
+    <input type="text" name="username" class="form-control" placeholder="Username">
+    <input type="password" name="password" class="form-control" placeholder="Password">
+  </div>
+</form> -->
+
+
+<div class="form-container">
+  <% if @error %>
+  <div class="errors"><%= @error %></div>
+  <% end %>
+  <form action="/login" method="post" role="form">
+    <div class="form-group">
+      <label for="email">Username</label>
+      <input type="text" name="username" class="form-control" id="email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password</label>
+      <input type="password" name="password" class="form-control" id="pwd">
+    </div>
+    <div class="form-group">
+      <button id="login-submit" type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </form>
+</div>

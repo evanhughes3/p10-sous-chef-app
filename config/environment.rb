@@ -16,6 +16,7 @@ require 'active_record'
 require 'logger'
 require 'bcrypt'
 require 'hirb'
+require 'yummly'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
@@ -48,3 +49,9 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
+Yummly.configure do |config|
+  config.app_id = "b68a708c"
+  config.app_key = "c990231d1ec74289fff36220ae4ba6fb"
+  config.use_ssl = true # Default is false
+end
