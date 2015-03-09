@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+
   // This is called after the document has loaded in its entirety
   // This guarantees that any elements we bind to will exist on the page
   // when we try to bind to them
@@ -25,7 +27,7 @@ $(document).ready(function() {
         //   }).done(function(serverData) {
         //     // append to DOM or render in some fashion
         //   })
-      console.log(response);
+      // console.log(response);
       // $('#results').html(parseData(response))
       displayAllRecipes(response)
     }
@@ -34,24 +36,23 @@ $(document).ready(function() {
       })
    })
 
-    $('.viewRecipe').click(function(event) {
-      event.preventDefault();
-      alert('yayaya')
-      url = $('.viewRecipe').attr('href')
+    $('body').on('click', '.viewRecipe', displayRecipe)
 
-      $.ajax({
-        type: 'GET',
-        url: url, // recipe/:id
-        data: url
-        dataType: 'JSONP',
-        success: function(response) {
-          console.log('inside display recipe!');
-          displayRecipe(response)
-        }
-      }).fail(function(){
-        console.log('failed')
-      })
-    })
+    //   url = $('.viewRecipe').attr('href')
+
+    //   $.ajax({
+    //     type: 'GET',
+    //     url: '/recipe/'
+    //     data: {url: url}
+    //     dataType: 'JSONP',
+    //     success: function(response) {
+    //       console.log('inside display recipe!');
+    //       displayRecipe(response)
+    //     }
+    //   }).fail(function(){
+    //     console.log('failed')
+    //   })
+    // })
   //      })
   //    .done(function(response){
   //       console.log("success!")
@@ -83,9 +84,9 @@ function displayAllRecipes(response) {
     var totalTime = element.totalTimeInSeconds
     var courses = element.attributes.course
     var flavors = element.flavors
-    var url = 'http://api.yummly.com/v1/api/recipe/' + recipeId + '?_app_id=' + APP_ID + '&_app_key=' + APP_KEY
+    //var url = 'http://api.yummly.com/v1/api/recipe/' + recipeId // + '?_app_id=' + APP_ID + '&_app_key=' + APP_KEY
 
-    $('#results').append('<h1><a class="viewRecipe" href="' + url + '">' + recipeName + '</a></h1>')
+    $('#results').append('<h1><a class="viewRecipe" href="' + recipeId + '">' + recipeName + '</a></h1>')
     $('#results').append('<img src=' + img + '>')
     ingredients_array.forEach(function(element, index) {
       $('#results').append('<p>' + (index + 1) + '.  '+ element + '</p>')
@@ -104,8 +105,19 @@ function displayAllRecipes(response) {
 }
 
 function displayRecipe(response) {
-  console.log("yayayaya")
-
+  event.preventDefault()
+  id = $(this).attr('href')
+  $.get({
+    type: 'GET',
+    url: '/recipe/' + id,
+    data: {id: id},
+  }).done(function(a){
+    console.log("made it through")
+    console.log(a)
+  }).fail(function(response){
+    console.log("failed")
+    console.log(response)
+  })
 
 }
 

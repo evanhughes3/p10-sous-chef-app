@@ -67,6 +67,14 @@ get '/recipe/search' do
   erb :search
 end
 
+get '/recipe/:id' do
+  p params[:id]
+  content_type :json
+  @result = Yummly.find(params[:id]).to_json
+
+  # erb :recipe_page
+end
+
 # get 'http://api.yummly.com/v1/api/recipe/Mediterranean-Salad-603851?_app_id=b68a708c&_app_key=c990231d1ec74289fff36220ae4ba6fb' do
 
 # end
