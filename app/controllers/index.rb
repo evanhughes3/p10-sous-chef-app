@@ -51,14 +51,16 @@ post '/recipe/create' do
   user = User.find(session[:id])
 
   recipe = Recipe.create(params[:recipe])
-  ingredient = Ingredient.create(params[:ingredient])
-  puts ingredient.name
+
+  full_ingredient = "#{params[:ingredient_quantity]} #{params[:ingredient_quantity_description]} #{params[:ingredient_name]}"
+
+  ingredient = Ingredient.create(name: full_ingredient)
   recipe.ingredients << ingredient
   recipe.set_quantity_of(ingredient, params[:quantity], params[:quantity_description])
 
   user.recipes << recipe
-
-  erb :index
+  redirect "/"
+  # erb :index
 
 end
 
@@ -86,7 +88,9 @@ post '/user/:id/recipe/:recipe_id/save' do
 
   user.recipes << your_recipe
 
-  redirect '/'
+  @added_to_list_message = "#{recipe.name} has been added to the grocery list!s"
+
+  erb :index
 
 end
 

@@ -1,3 +1,7 @@
+body {
+  background-image: url("../../imgs/45degreee_fabric.png");
+}
+
 .form-group {
   padding: 5px 200px;
 }
@@ -7,6 +11,36 @@
   border:1px solid black;
 }
 
-#login-submit {
+#search-container {
+  border: 1px solid black;
+  margin: 50px 150px;
+  text-align: center;
 
+}
+
+#search-bar {
+}
+
+#input-text {
+  height: 40px;
+  width: 400px;
+  font-size: medium;
+
+}
+
+#search {
+  background-color: lightgreen;
+  height: 40px;
+  width: 80px;
+  margin: 20px 0px 30px 30px;
+  font-size: large;
+  font-weight: bold;
+}
+
+#results {
+
+}
+
+.recipe-img {
+  width: 120px;
 }

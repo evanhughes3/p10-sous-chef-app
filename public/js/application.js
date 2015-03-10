@@ -4,15 +4,14 @@ $(document).ready(function() {
   // This is called after the document has loaded in its entirety
   // This guarantees that any elements we bind to will exist on the page
   // when we try to bind to them
-  $("#search").click(function(event){
+  $("#search").on('click', function(event){
     event.preventDefault();
     APP_ID = 'b68a708c'
     APP_KEY = 'c990231d1ec74289fff36220ae4ba6fb'
     var keywords = $('#input-text').val();
     console.log(keywords)
     // var url = "http://www.yummly.com/v1/api/recipes?q="+keywords+"&_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&";
-    console.log(ENV)
-    var url = "http://api.yummly.com/v1/api/recipes?_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&" + keywords + "&requirePictures=true";
+    var url = "http://api.yummly.com/v1/api/recipes?_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&" + keywords + "&requirePictures=true&maxResult=100&start=10";
     $.ajax({
       type: 'GET',
       url: url,
@@ -46,11 +45,11 @@ function displayAllRecipes(response) {
     var flavors = element.flavors
     //var url = 'http://api.yummly.com/v1/api/recipe/' + recipeId // + '?_app_id=' + APP_ID + '&_app_key=' + APP_KEY
 
-    $('#results').append('<h1><a class="viewRecipe" href="' + recipeId + '">' + recipeName + '</a></h1>')
-    $('#results').append('<img src=' + img + '>')
-    ingredients_array.forEach(function(element, index) {
-      $('#results').append('<p>' + (index + 1) + '.  '+ element + '</p>')
-    })
+    $('#results').append('<h3><a class="viewRecipe" href="' + recipeId + '">' + recipeName + '</a></h3>')
+    $('#results').append('<img class="recipe-img" src=' + img + '>')
+    // ingredients_array.forEach(function(element, index) {
+    //   $('#results').append('<p>' + (index + 1) + '.  '+ element + '</p>')
+    // })
     // courses.forEach(function(element) {
     //   $('#results').append('<p>Courses: ' + element + '</p>')
     // })
@@ -58,8 +57,8 @@ function displayAllRecipes(response) {
     //   $('#results').append('<p>' + flavor + ' : ' + (flavors[flavor] * 10).toFixed(1) + '% </p>')
     // }
 
-    $('#results').append('<p>Rating: ' + rating + ' stars</p>')
-    $('#results').append('<p>Total Time: ' + (totalTime / 60) + ' minutes</p>')
+    $('#results').append('<h5>Rating: ' + rating + ' stars</h5>')
+    $('#results').append('<h5>Total Time: ' + (totalTime / 60) + ' minutes</h5>')
   })
 
 }

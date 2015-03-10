@@ -1,12 +1,50 @@
 <% if @error %>
-  <div class="errors"><%= @error %></div>
+<div class="errors"><%= @error %></div>
 <% end %>
 
-<form action='/recipe/create' method="post">
+<!-- <form action='/recipe/create' method="post">
   <input type="text" name="recipe[name]" placeholder="Recipe Title">
-  <input type="text" name="ingredient[name]" placeholder="Ingredient">
-  <input type="text" name="quantity" placeholder="Quantity">
-  <input type="text" name="quantity_description" placeholder="oz, cups, lbs?">
+  <input type="text" name="ingredient_name" placeholder="Ingredient">
+  <input type="text" name="ingredient_quantity" placeholder="Quantity">
+  <input type="text" name="ingredient_quantity_description" placeholder="oz, cups, lbs?">
   <textarea rows="10" cols="50" name="recipe[instructions]" placeholder="Describe your recipe here!"></textarea>
   <input type="submit" value="submit">
+</form> -->
+
+<form action='/recipe/create' method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Recipe Name</label>
+    <input type="text" name="recipe[name]" class="form-control" id="exampleInputEmail1">
+  </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Ingredient</label>
+        <input type="text" name="ingredient_name" class="form-control">
+      </div>
+  <div class='row'>
+    <div class='col-md-3'>
+          <div class="form-group">
+      <label for="exampleInputPassword1">Quantity</label>
+      <input type="text" name="ingredient_quantity" placeholder="Quantity">
+    </div>
+    </div>
+    <div class='col-md-5'>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Description</label>
+        <select name="ingredient_quantity_description" class="form-control">
+          <option>cup</option>
+          <option>cups</option>
+          <option>oz</option>
+          <option>tablespoon</option>
+          <option>teaspoon</option>
+          <option>pinch</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <textarea name="recipe[instructions]" class="form-control" rows="12" placeholder="Describe your recipe here!"></textarea>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-default">Create Recipe</button>
+  </div>
 </form>
