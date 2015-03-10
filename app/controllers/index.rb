@@ -51,7 +51,6 @@ post '/recipe/create' do
   user = User.find(session[:id])
 
   recipe = Recipe.create(params[:recipe])
-  puts recipe
   ingredient = Ingredient.create(params[:ingredient])
   puts ingredient.name
   recipe.ingredients << ingredient
@@ -68,12 +67,40 @@ get '/recipe/search' do
 end
 
 get '/recipe/:id' do
-  p params[:id]
-  content_type :json
-  @result = Yummly.find(params[:id]).to_json
-
-  # erb :recipe_page
+  # content_type :json
+  recipe = Yummly.find(params[:id])
+  erb :recipe_page, layout: false, :locals => {:recipe => recipe}
+  # recipe.to_json
 end
+
+post '/user/:id/recipe/:recipe_id/save' do
+  user = User.find(params[:id])
+  recipe = Yummly.find(params[:recipe_id])
+  recipe_name = recipe.name
+
+  your_recipe = Recipe.create(name: recipe_name)
+
+  recipe.json["ingredientLines"].each do |ingredient|
+    your_recipe.ingredients << Ingredient.create(name: ingredient)
+  end
+
+  user.recipes << your_recipe
+
+  redirect '/'
+
+end
+
+# recipe = Recipe.create(params[:recipe])
+#   ingredient = Ingredient.create(params[:ingredient])
+#   puts ingredient.name
+#   recipe.ingredients << ingredient
+#   recipe.set_quantity_of(ingredient, params[:quantity], params[:quantity_description])
+
+#   user.recipes << recipe
+
+#   erb :index
+
+
 
 # get 'http://api.yummly.com/v1/api/recipe/Mediterranean-Salad-603851?_app_id=b68a708c&_app_key=c990231d1ec74289fff36220ae4ba6fb' do
 

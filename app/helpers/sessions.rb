@@ -7,4 +7,11 @@ helpers do
         end
   end
 
+  def client_env
+    {
+      'APP_ID'  => ENV['APP_ID'],
+      'APP_KEY' => ENV['APP_KEY'],
+    }
+  end
+
 end

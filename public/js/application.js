@@ -11,63 +11,23 @@ $(document).ready(function() {
     var keywords = $('#input-text').val();
     console.log(keywords)
     // var url = "http://www.yummly.com/v1/api/recipes?q="+keywords+"&_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&";
+    console.log(ENV)
     var url = "http://api.yummly.com/v1/api/recipes?_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&" + keywords + "&requirePictures=true";
     $.ajax({
       type: 'GET',
       url: url,
       dataType: 'JSONP',
       success: function (response) {
-        // function parseApiData(data) {
-        //   // ajax call here
-        //   $.ajax({
-        //     type: 'post',
-        //     url: //,
-        //     // data: APIresponse,
-        //     dataType: 'JSONP'
-        //   }).done(function(serverData) {
-        //     // append to DOM or render in some fashion
-        //   })
-      // console.log(response);
-      // $('#results').html(parseData(response))
+      $('#results').children().remove();
       displayAllRecipes(response)
     }
     }).fail(function(){
-      console.log("failed")
+      console.log("display recipes failed")
       })
    })
 
     $('body').on('click', '.viewRecipe', displayRecipe)
 
-    //   url = $('.viewRecipe').attr('href')
-
-    //   $.ajax({
-    //     type: 'GET',
-    //     url: '/recipe/'
-    //     data: {url: url}
-    //     dataType: 'JSONP',
-    //     success: function(response) {
-    //       console.log('inside display recipe!');
-    //       displayRecipe(response)
-    //     }
-    //   }).fail(function(){
-    //     console.log('failed')
-    //   })
-    // })
-  //      })
-  //    .done(function(response){
-  //       console.log("success!")
-  //       $("#results").html(  JSON.stringify(response) );
-  //       console.log(response)
-  //      })
-
-
-  //        // success: function() { console.log('Success!'); },
-  //        // error: function(data, data2) { console.log(data); },
-  //        // jsonp: false,
-  //        // jsonpCallback: 'recipeGet'
-  // });
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
 });
 
 
@@ -91,12 +51,12 @@ function displayAllRecipes(response) {
     ingredients_array.forEach(function(element, index) {
       $('#results').append('<p>' + (index + 1) + '.  '+ element + '</p>')
     })
-    courses.forEach(function(element) {
-      $('#results').append('<p>Courses: ' + element + '</p>')
-    })
-    for(var flavor in flavors) {
-      $('#results').append('<p>' + flavor + ' : ' + (flavors[flavor] * 10).toFixed(1) + '% </p>')
-    }
+    // courses.forEach(function(element) {
+    //   $('#results').append('<p>Courses: ' + element + '</p>')
+    // })
+    // for(var flavor in flavors) {
+    //   $('#results').append('<p>' + flavor + ' : ' + (flavors[flavor] * 10).toFixed(1) + '% </p>')
+    // }
 
     $('#results').append('<p>Rating: ' + rating + ' stars</p>')
     $('#results').append('<p>Total Time: ' + (totalTime / 60) + ' minutes</p>')
@@ -107,45 +67,17 @@ function displayAllRecipes(response) {
 function displayRecipe(response) {
   event.preventDefault()
   id = $(this).attr('href')
-  $.get({
+  $.ajax({
     type: 'GET',
     url: '/recipe/' + id,
-    data: {id: id},
-  }).done(function(a){
-    console.log("made it through")
-    console.log(a)
+  }).done(function(response){
+    console.log("made it through");
+    console.log(response)
+    $('#results').children().remove();
+    $('#results').append(response);
   }).fail(function(response){
-    console.log("failed")
+    console.log("failed display recipe")
     console.log(response)
   })
 
 }
-
-
-// function getRecipes(url) {
-//   // Retrieve Handlebars template from the HTML
-//   var source = $('#recipe-template').html();
-//   var template = Handlebars.compile(source);
-//   var context = {recipes: []};
-
-//   $.ajax({
-//     url: url,
-//   }).done(function(response) {
-//     context.squirrels = response.response.children;
-//     $('#results').html(template(context));
-//   });
-// }
-
-// $(document).ready(function() {
-//   getSquirrels();
-// });
-
-// function parseData(currentObject, key) {
-//   for (var property in currentObject) {
-//     if (typeof currentObject[property] === "object") {
-//       parseData(currentObject[property], property);
-//     } else {
-//      $('#results').append(property + ' -- ' + currentObject[property] + '<br />');
-//    }
-//  }
-// }
