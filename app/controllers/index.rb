@@ -88,11 +88,16 @@ post '/user/:id/recipe/:recipe_id/save' do
 
   user.recipes << your_recipe
 
-  @added_to_list_message = "#{recipe.name} has been added to the grocery list!s"
+  @added_to_list_message = "#{recipe.name} has been added to the grocery list!"
 
   erb :index
 
 end
+
+# get '/users/:user_id/shopping-list/new' do
+#   user = User.find(session[:id])
+#   "lalala"
+# end
 
 # recipe = Recipe.create(params[:recipe])
 #   ingredient = Ingredient.create(params[:ingredient])
