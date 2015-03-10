@@ -9,7 +9,6 @@
   <!--
     application.css is where you put your styles
   -->
-  <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/application.css">
 
@@ -17,8 +16,9 @@
     var ENV = JSON.parse(<%= client_env.to_json %>);
   </script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/js/application.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="/js/handlebars.js"></script>
+  <script src="/js/application.js"></script>
 
 
   <title></title>
@@ -26,5 +26,12 @@
 <body>
   <%= erb :_nav_bar %>
   <%= yield %>
+
+  <script id="recipe-template" type="text/x-handlebars-template">
+    <h3><a class="viewRecipe" href={{recipeId}}>{{recipeName}}</a></h3>
+      <img class="recipe-img" src={{imgUrl}}>
+      <h5>Rating: {{rating}} stars</h5>
+      <h5>Total Time: {{time}} minutes</h5>
+  </script>
 </body>
 </html>

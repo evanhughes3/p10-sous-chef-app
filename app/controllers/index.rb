@@ -88,9 +88,9 @@ post '/user/:id/recipe/:recipe_id/save' do
 
   user.recipes << your_recipe
 
-  @added_to_list_message = "#{recipe.name} has been added to the grocery list!"
-
-  erb :index
+  @added_to_list_message = "#{recipe.name} has been added to the grocery list!s"
+  # flash[:messages] =
+  redirect '/'
 
 end
 
