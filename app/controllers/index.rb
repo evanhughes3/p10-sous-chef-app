@@ -88,9 +88,9 @@ post '/user/:id/recipe/:recipe_id/save' do
 
   user.recipes << your_recipe
 
-  @added_to_list_message = "#{recipe.name} has been added to the grocery list!"
-
-  erb :index
+  @added_to_list_message = "#{recipe.name} has been added to the grocery list!s"
+  # flash[:messages] =
+  redirect '/'
 
 end
 
@@ -98,6 +98,15 @@ end
 #   user = User.find(session[:id])
 #   "lalala"
 # end
+
+post "/users/:id/list/send" do
+  phone_number = "+15104093210"
+  all_ingredients = []
+  current_user.recipes.each {|recipe| recipe.ingredients.each {|ingredient| all_ingredients << ingredient.name}}
+
+
+end
+
 
 # recipe = Recipe.create(params[:recipe])
 #   ingredient = Ingredient.create(params[:ingredient])
