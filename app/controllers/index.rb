@@ -99,6 +99,15 @@ end
 #   "lalala"
 # end
 
+post "/users/:id/list/send" do
+  phone_number = "+15104093210"
+  all_ingredients = []
+  current_user.recipes.each {|recipe| recipe.ingredients.each {|ingredient| all_ingredients << ingredient.name}}
+
+
+end
+
+
 # recipe = Recipe.create(params[:recipe])
 #   ingredient = Ingredient.create(params[:ingredient])
 #   puts ingredient.name

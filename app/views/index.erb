@@ -11,7 +11,6 @@
 
   <h1> Welcome <%= current_user.first_name %> </h1>
 
-
   <h3>Here are your recipes:</h3>
 
   <% current_user.recipes.each do |recipe| %>
@@ -20,7 +19,7 @@
 
       <% recipe.ingredients.each do |ingredient| %>
 
-        <h5><%= recipe.get_quantity_of(ingredient) %> <%= recipe.get_quantity_description_of(ingredient) %> <%= ingredient.name %></h5>
+        <h5 class="ingredient"><%= ingredient.name %></h5>
 
       <% end %>
 
@@ -31,6 +30,10 @@
   <h4>Click here to create a recipe!</h4>
   <form action="/recipe/new">
     <input type="submit" value="Create New Recipe">
+  </form>
+
+  <form action="/send-list">
+    <input type="submit" value="Send Shopping List to Phone!">
   </form>
 
 <% else %>
