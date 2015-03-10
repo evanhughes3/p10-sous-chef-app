@@ -103,9 +103,8 @@ post "/users/:id/list/send" do
   phone_number = "+15104093210"
   all_ingredients = []
   current_user.recipes.each {|recipe| recipe.ingredients.each {|ingredient| all_ingredients << ingredient.name}}
-
-
 end
+
 
 
 # recipe = Recipe.create(params[:recipe])
@@ -113,14 +112,11 @@ end
 #   puts ingredient.name
 #   recipe.ingredients << ingredient
 #   recipe.set_quantity_of(ingredient, params[:quantity], params[:quantity_description])
-
 #   user.recipes << recipe
-
 #   erb :index
 
-
-
 # get 'http://api.yummly.com/v1/api/recipe/Mediterranean-Salad-603851?_app_id=b68a708c&_app_key=c990231d1ec74289fff36220ae4ba6fb' do
+
 
 # end
 

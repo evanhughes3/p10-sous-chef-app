@@ -6,11 +6,11 @@ $(document).ready(function() {
   // when we try to bind to them
   $("#search-form").submit(function(event){
     event.preventDefault();
-    // APP_ID = 'b68a708c'
-    // APP_KEY = 'c990231d1ec74289fff36220ae4ba6fb'
+    APP_ID = 'b68a708c'
+    APP_KEY = 'c990231d1ec74289fff36220ae4ba6fb'
     var keywords = $('#input-text').val();
     console.log(keywords)
-    console.log(ENV[APP_KEY])
+    // console.log(ENV[APP_KEY])
     // var url = "http://www.yummly.com/v1/api/recipes?q="+keywords+"&_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&";
     var url = "http://api.yummly.com/v1/api/recipes?_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&q=" + keywords + "&requirePictures=true&maxResult=100&start=10";
     $.ajax({
