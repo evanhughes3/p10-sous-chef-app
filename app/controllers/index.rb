@@ -88,7 +88,7 @@ post '/user/:id/recipe/:recipe_id/save' do
 
   user.recipes << your_recipe
 
-  @added_to_list_message = "#{recipe.name} has been added to the grocery list!s"
+  @message = "#{recipe.name} has been added to the grocery list!s"
   # flash[:messages] =
   redirect '/'
 
@@ -100,9 +100,23 @@ end
 # end
 
 post "/users/:id/list/send" do
-  phone_number = "+15104093210"
+  user = User.find(params[:id])
+  phone_number = "+15104093210" #user.phone_number
   all_ingredients = []
   current_user.recipes.each {|recipe| recipe.ingredients.each {|ingredient| all_ingredients << ingredient.name}}
+  ingredient_list = all_ingredients.join(", ")
+  account_sid = 'AC52d17fccd30eb3cbd13c7397c0c29cd8'
+  auth_token = '142371aa2abd7cbaddfedcdc619097f5'
+
+  @client = Twilio::REST::Client.new(account_sid, auth_token)
+  @client.account.messages.create({
+    :from => '+14154296667',
+    :to => phone_number,
+    :body => ingredient_list,
+    })
+  @message = "Your list has been sent to your phone!"
+
+  redirect "/"
 end
 
 

@@ -21,6 +21,7 @@ require 'yummly'
 require 'sinatra'
 require "sinatra/reloader" if development?
 require "twilio-ruby"
+require 'httparty'
 
 require 'erb'
 require 'dotenv'

@@ -2,8 +2,8 @@
   <h3><%= @sign_out_message %></h3>
 <% end %>
 
-<% if @added_to_list_message %>
-  <h3><%= @added_to_list_message %></h3>
+<% if @message %>
+  <h3><%= @message %></h3>
 <% end %>
 
 
@@ -32,7 +32,7 @@
     <input type="submit" value="Create New Recipe">
   </form>
 
-  <form action="/send-list">
+  <form action="/users/<%= current_user.id %>/list/send" method="post">
     <input type="submit" value="Send Shopping List to Phone!">
   </form>
 
