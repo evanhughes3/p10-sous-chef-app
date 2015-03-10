@@ -117,6 +117,7 @@ post "/users/:id/list/send" do
   @message = "Your list has been sent to your phone!"
 
   redirect "/"
+
 end
 
 
