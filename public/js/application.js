@@ -32,6 +32,36 @@ $(document).ready(function() {
 
   $('body').on('click', '.viewRecipe', displayRecipe);
 
+
+  $('.create-recipe-form').on("submit", function(event){
+    event.preventDefault();
+    var ingredient_array = []
+    $('.ingredient-text').each(function(){
+      ingredient_array.push($(this).val())
+    })
+    var recipeName = $('.recipe-name').val()
+    var recipeInstructions = $('.recipe-instructions').val()
+    console.log(ingredient_array)
+    console.log(recipeName)
+    console.log(recipeInstructions)
+
+    $.ajax ({
+      type: "POST",
+      url: "/recipe/create",
+      data: {ingredient : ingredient_array, recipe_name : recipeName, instructions : recipeInstructions}
+    })
+    .done(function(){
+      console.log("Success create recipe")
+    })
+    .fail(function(){
+      console.log("Failed create recipe")
+    })
+  });
+
+
+
+
+
   var counter = 1
   $('body').on('click', '.add-ingredient-button', function(event){
     event.preventDefault()
@@ -40,20 +70,8 @@ $(document).ready(function() {
     counter += 1
     $(this).remove()
     $('.add-ingredient-form').append("<div class='form-group'><label for='exampleInputPassword1'>Ingredient " + counter + "</label><input type='text' name='ingredient_name' class='form-control ingredient-text' placeholder='e.g. 2 cups of flour'></div><div class='form-group'><button class='add-ingredient-button'>Add Ingredient</button></div>");
-    // $.ajax({
-    //   type: "post",
-    //   url: "/recipe/create",
-    //   data: {ingredient_name: ingredient_name},
-    // })
-    // .done(function(){
-    //   console.log("made it through")
-    // })
-    // .fail(function() {
-    //   console.log("failed")
-    // })
+
   })
-
-
 
 });
 
@@ -82,7 +100,7 @@ function displayRecipe(response) {
   id = $(this).attr('href')
   $.ajax({
     type: 'GET',
-    url: '/recipe/' + id,
+    url: '/recipe/search/' + id,
   }).done(function(response){
     console.log("made it through");
     console.log(response)

@@ -47,17 +47,19 @@ end
 
 post '/recipe/create' do
 
+  p params
+
   user = User.find(session[:id])
 
-  recipe = Recipe.create(params[:recipe])
+  recipe = Recipe.create(name: params[:recipe_name], instructions: params[:instructions])
 
-  ingredient = Ingredient.create(name: params[:ingredient_name])
-
-  recipe.ingredients << ingredient
+  params[:ingredient].each do |ingredient|
+    recipe.ingredients << Ingredient.create(name: ingredient)
+  end
 
   user.recipes << recipe
 
-  redirect "/"
+  redirect '/'
 
 end
 
@@ -65,9 +67,17 @@ get '/recipe/search' do
   erb :search
 end
 
-get '/recipe/:id' do
+get '/recipe/search/:id' do
   recipe = Yummly.find(params[:id])
   erb :recipe_page, layout: false, :locals => {:recipe => recipe}
+end
+
+get '/recipe/display/:id' do
+  recipe = Recipe.find(params[:id])
+  p recipe
+
+  erb :your_recipe_page, :locals => {:recipe => recipe}
+
 end
 
 get '/searchResults/:keywords' do
@@ -95,7 +105,7 @@ post '/user/:id/recipe/:recipe_id/save' do
 
   user.recipes << your_recipe
 
-  @message = "#{recipe.name} has been added to the grocery list!s"
+  @message = "#{recipe.name} has been added to the grocery list!"
   # flash[:messages] =
   redirect '/'
 
