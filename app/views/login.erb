@@ -11,7 +11,9 @@
     <input type="password" name="password" class="form-control" placeholder="Password">
   </div>
 </form> -->
-
+<% if @message %>
+  <h3><%= @message %></h3>
+<% end %>
 
 <div class="form-container">
   <% if @error %>

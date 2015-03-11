@@ -1,4 +1,7 @@
+use Rack::Flash
+
 get '/' do
+  @message = flash[:notice]
   erb :index
 end
 
@@ -13,7 +16,8 @@ post '/login' do
     session[:id] = user.id
     redirect '/'
   else
-    @error = "username and password did not match"
+    flash[:notice] = "username and password did not match"
+    @message = flash[:notice]
     erb :login
   end
 end
@@ -29,7 +33,8 @@ post '/signup' do
     session[:id] = user.id
     redirect '/'
   else
-    @error = "There was an error"
+    flash[:notice] = "There was an error with your signup"
+    @message = flash[:notice]
     erb :signup
   end
 end
@@ -37,7 +42,7 @@ end
 delete '/signout/:id' do
   # sign-out -- invoked
   session[:id] = nil
-  @sign_out_message = "You have been successfully signed out"
+  @message = flash[:notice] = "You have been successfully signed out"
   redirect '/'
 end
 
@@ -58,6 +63,8 @@ post '/recipe/create' do
   end
 
   user.recipes << recipe
+
+  flash[:notice] = "You created a new recipe: #{recipe.name}"
 
   redirect '/'
 
@@ -105,8 +112,9 @@ post '/user/:id/recipe/:recipe_id/save' do
 
   user.recipes << your_recipe
 
-  @message = "#{recipe.name} has been added to the grocery list!"
-  # flash[:messages] =
+  flash[:notice] = "#{recipe.name} has been added to the list!"
+  @message = flash[:notice]
+
   redirect '/'
 
 end
@@ -122,10 +130,10 @@ post "/users/:id/list/send" do
 
   @client = Twilio::REST::Client.new(account_sid, auth_token)
   @client.account.messages.create({
-    :from => '+14154296667',
-    :to => phone_number,
-    :body => ingredient_list,
-    })
+                                    :from => '+14154296667',
+                                    :to => phone_number,
+                                    :body => ingredient_list,
+  })
   @message = "Your list has been sent to your phone!"
 
   redirect "/"
