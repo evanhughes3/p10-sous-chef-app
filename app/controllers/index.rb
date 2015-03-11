@@ -53,12 +53,9 @@ post '/recipe/create' do
   full_ingredient = "#{params[:ingredient_quantity]} #{params[:ingredient_quantity_description]} #{params[:ingredient_name]}"
 
   ingredient = Ingredient.create(name: full_ingredient)
-  recipe.ingredients << ingredient
-  recipe.set_quantity_of(ingredient, params[:quantity], params[:quantity_description])
 
   user.recipes << recipe
   redirect "/"
-  # erb :index
 
 end
 
@@ -67,10 +64,8 @@ get '/recipe/search' do
 end
 
 get '/recipe/:id' do
-  # content_type :json
   recipe = Yummly.find(params[:id])
   erb :recipe_page, layout: false, :locals => {:recipe => recipe}
-  # recipe.to_json
 end
 
 get '/searchResults/:keywords' do
@@ -85,8 +80,12 @@ post '/user/:id/recipe/:recipe_id/save' do
   user = User.find(params[:id])
   recipe = Yummly.find(params[:recipe_id])
   recipe_name = recipe.name
+  img_url = recipe.images[0].large_url
+  recipe_url = recipe.json['source']['sourceRecipeUrl']
+  yummly_id = recipe.json['id']
 
-  your_recipe = Recipe.create(name: recipe_name)
+  your_recipe = Recipe.create(name: recipe_name, img_url: img_url, recipe_url: recipe_url, yummly_id: yummly_id)
+
 
   recipe.json["ingredientLines"].each do |ingredient|
     your_recipe.ingredients << Ingredient.create(name: ingredient)
@@ -99,11 +98,6 @@ post '/user/:id/recipe/:recipe_id/save' do
   redirect '/'
 
 end
-
-# get '/users/:user_id/shopping-list/new' do
-#   user = User.find(session[:id])
-#   "lalala"
-# end
 
 post "/users/:id/list/send" do
   user = User.find(params[:id])

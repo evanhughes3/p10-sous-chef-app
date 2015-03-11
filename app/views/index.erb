@@ -8,29 +8,24 @@
 
 
 <% if current_user %>
-
   <h1> Welcome <%= current_user.first_name %> </h1>
-
   <h3>Here are your recipes:</h3>
 
   <% current_user.recipes.each do |recipe| %>
-
-    <h4><%= recipe.name.capitalize %></h4>
-
+    <h3><a href="/recipe/<%= recipe.yummly_id %>"><%= recipe.name.capitalize %></a></h3>
+    <img src="<%= recipe.img_url %>" alt="<%= recipe.name %>">
       <% recipe.ingredients.each do |ingredient| %>
-
         <h5 class="ingredient"><%= ingredient.name %></h5>
-
+        <h5></h5>
       <% end %>
 
+      <% if recipe.instructions %>
     <p><%= recipe.instructions %></p>
+      <% end %>
+
+      <a href="<%= recipe.recipe_url %>">Click here to view recipe</a>
 
   <% end %>
-
-  <h4>Click here to create a recipe!</h4>
-  <form action="/recipe/new">
-    <input type="submit" value="Create New Recipe">
-  </form>
 
   <form action="/users/<%= current_user.id %>/list/send" method="post">
     <input type="submit" value="Send Shopping List to Phone!">

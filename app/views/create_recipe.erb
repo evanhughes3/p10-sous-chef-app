@@ -16,30 +16,14 @@
     <label for="exampleInputEmail1">Recipe Name</label>
     <input type="text" name="recipe[name]" class="form-control" id="exampleInputEmail1">
   </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Ingredient</label>
-        <input type="text" name="ingredient_name" class="form-control">
-      </div>
-  <div class='row'>
-    <div class='col-md-3'>
-          <div class="form-group">
-      <label for="exampleInputPassword1">Quantity</label>
-      <input type="text" name="ingredient_quantity" placeholder="Quantity">
-    </div>
-    </div>
-    <div class='col-md-5'>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Description</label>
-        <select name="ingredient_quantity_description" class="form-control">
-          <option>cup</option>
-          <option>cups</option>
-          <option>oz</option>
-          <option>tablespoon</option>
-          <option>teaspoon</option>
-          <option>pinch</option>
-        </select>
-      </div>
-    </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Ingredient</label>
+    <input type="text" name="ingredient_name" class="form-control" placeholder="e.g. 2 cups of flour">
+  </div>
+  <div class="form-group">
+    <button class="add-ingredient-button">Add Ingredient</button>
+  </div>
+  <div class="add-ingredient-form" class="form-group">
   </div>
   <div class="form-group">
     <textarea name="recipe[instructions]" class="form-control" rows="12" placeholder="Describe your recipe here!"></textarea>

@@ -30,7 +30,16 @@ $(document).ready(function() {
     })
   })
 
-  $('body').on('click', '.viewRecipe', displayRecipe)
+  $('body').on('click', '.viewRecipe', displayRecipe);
+
+  $('body').on('click', '.add-ingredient-button', function(event){
+    event.preventDefault()
+    $(this).remove()
+    // $('.add-ingredient-form').append()
+    $('.add-ingredient-form').append("<div class='form-group'><label for='exampleInputPassword1'>Ingredient</label><input type='text' name='ingredient_name' class='form-control' placeholder='e.g. 2 cups of flour'></div><div class='form-group'><button class='add-ingredient-button'>Add Ingredient</button></div>")
+  })
+
+
 
 });
 
