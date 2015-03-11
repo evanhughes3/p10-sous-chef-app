@@ -13,6 +13,7 @@ gem 'activerecord', '~>4.1'
 
 gem 'rake'
 gem 'yummly'
+gem 'httparty'
 
 gem 'shotgun'
 gem 'bcrypt-ruby'
