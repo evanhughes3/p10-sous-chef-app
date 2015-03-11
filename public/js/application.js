@@ -10,29 +10,33 @@ $(document).ready(function() {
     APP_KEY = 'c990231d1ec74289fff36220ae4ba6fb'
     var keywords = $('#input-text').val();
     console.log(keywords)
-    // console.log(ENV[APP_KEY])
     // var url = "http://www.yummly.com/v1/api/recipes?q="+keywords+"&_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&";
-    var url = "http://api.yummly.com/v1/api/recipes?_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&q=" + keywords + "&requirePictures=true&maxResult=100&start=10";
+    // var url = "http://api.yummly.com/v1/api/recipes?_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&q=" + keywords + "&requirePictures=true&maxResult=100&start=10";
     $.ajax({
       type: 'GET',
-      url: url,
-      dataType: 'JSONP',
-      success: function (response) {
+      url: '/searchResults/' + keywords,
+      dataType: 'json',
+    })
+
+    .done(function (response) {
+      console.log(response)
       $('#results').empty();
       displayAllRecipes(response)
-    }
-    }).fail(function(){
-      console.log("display recipes failed")
-      })
-   })
+    })
 
-    $('body').on('click', '.viewRecipe', displayRecipe)
+    .fail(function(response){
+      console.log(response)
+      console.log("display recipes failed")
+    })
+  })
+
+  $('body').on('click', '.viewRecipe', displayRecipe)
 
 });
 
 
 function displayAllRecipes(response) {
-  matches = response.matches
+  matches = response
   var source   = $("#recipe-template").html();
   var template = Handlebars.compile(source);
 
