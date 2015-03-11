@@ -32,11 +32,25 @@ $(document).ready(function() {
 
   $('body').on('click', '.viewRecipe', displayRecipe);
 
+  var counter = 1
   $('body').on('click', '.add-ingredient-button', function(event){
     event.preventDefault()
+    ingredient_name = $('.ingredient-text').val()
+
+    counter += 1
     $(this).remove()
-    // $('.add-ingredient-form').append()
-    $('.add-ingredient-form').append("<div class='form-group'><label for='exampleInputPassword1'>Ingredient</label><input type='text' name='ingredient_name' class='form-control' placeholder='e.g. 2 cups of flour'></div><div class='form-group'><button class='add-ingredient-button'>Add Ingredient</button></div>")
+    $('.add-ingredient-form').append("<div class='form-group'><label for='exampleInputPassword1'>Ingredient " + counter + "</label><input type='text' name='ingredient_name' class='form-control ingredient-text' placeholder='e.g. 2 cups of flour'></div><div class='form-group'><button class='add-ingredient-button'>Add Ingredient</button></div>");
+    // $.ajax({
+    //   type: "post",
+    //   url: "/recipe/create",
+    //   data: {ingredient_name: ingredient_name},
+    // })
+    // .done(function(){
+    //   console.log("made it through")
+    // })
+    // .fail(function() {
+    //   console.log("failed")
+    // })
   })
 
 

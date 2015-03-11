@@ -46,15 +46,17 @@ get '/recipe/new' do
 end
 
 post '/recipe/create' do
+
   user = User.find(session[:id])
 
   recipe = Recipe.create(params[:recipe])
 
-  full_ingredient = "#{params[:ingredient_quantity]} #{params[:ingredient_quantity_description]} #{params[:ingredient_name]}"
+  ingredient = Ingredient.create(name: params[:ingredient_name])
 
-  ingredient = Ingredient.create(name: full_ingredient)
+  recipe.ingredients << ingredient
 
   user.recipes << recipe
+
   redirect "/"
 
 end
