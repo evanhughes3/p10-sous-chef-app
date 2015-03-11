@@ -17,6 +17,7 @@ require 'logger'
 require 'bcrypt'
 require 'hirb'
 require 'yummly'
+require 'httparty'
 
 require 'sinatra'
 require "sinatra/reloader" if development?

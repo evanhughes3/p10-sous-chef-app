@@ -19,6 +19,7 @@ gem 'bcrypt-ruby'
 gem 'hirb'
 gem 'twilio-ruby'
 gem 'dotenv'
+gem 'httparty'
 
 group :test do
   gem 'shoulda-matchers'
