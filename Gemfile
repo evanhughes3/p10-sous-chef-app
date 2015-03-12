@@ -16,7 +16,7 @@ gem 'yummly'
 gem 'httparty'
 
 gem 'shotgun'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'hirb'
 gem 'twilio-ruby'
 gem 'dotenv'
