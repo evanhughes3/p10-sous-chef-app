@@ -63,6 +63,7 @@ post '/recipe/create' do
   end
 
   user.recipes << recipe
+  p user.recipes
 
   flash[:notice] = "You created a new recipe: #{recipe.name}"
 
