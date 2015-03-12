@@ -41,7 +41,7 @@ $(document).ready(function() {
     })
     .done(function(){
       console.log("Success create recipe")
-      window.location.replace("/") //SORRY!! count't figure out any other way to do this...
+      // window.location.replace("/") //SORRY!! count't figure out any other way to do this...
     })
     .fail(function(){
       console.log("Failed create recipe")
