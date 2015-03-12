@@ -94,12 +94,18 @@ post '/recipe/:id/delete' do
   redirect '/'
 end
 
-get '/searchResults/:keywords' do
+get '/searchResults/:keywords' do # => TODO
   keywords = params[:keywords]
   url = "http://api.yummly.com/v1/api/recipes?_app_id=#{ENV['APP_ID']}&_app_key=#{ENV['APP_KEY']}&q=#{keywords}&requirePictures=true&maxResult=100&start=10";
   response = HTTParty.get(url)
 
-  response.parsed_response['matches'].to_json
+  if response.parsed_response['matches'] == []
+    flash[:notice] = "No search results we're returned"
+    @message = flash[:notice]
+    redirect '/recipe/search'
+  else
+    response.parsed_response['matches'].to_json
+  end
 end
 
 post '/user/:id/recipe/:recipe_id/save' do

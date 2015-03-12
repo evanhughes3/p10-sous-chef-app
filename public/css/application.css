@@ -21,6 +21,7 @@ a {
 }
 
 .navbar-btn{
+  margin-right: 15px;
   margin-left: 15px;
   font-size: 15px;
   font-style: comic-sans;
@@ -28,11 +29,9 @@ a {
 
 .form-container {
   margin: 100px 300px 5px 300px;
-  border:1px solid black;
 }
 
 #search-container {
-  border: 1px solid black;
   margin: 50px 150px;
   text-align: center;
 
@@ -61,6 +60,21 @@ a {
   justify-content: space-around;
 }
 
+
+.blow-up {
+    -webkit-transform: scale(1.6);
+    -moz-transform: scale(1.6);
+    -o-transform: scale(1.6);
+    transform: scale(1.6);
+}
+
+.recipe-img {
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+}
+
 .recipe-img {
   width: 120px;
 }
@@ -83,12 +97,10 @@ a {
 }
 
 .welcome {
-  border: 1px solid black;
   text-align: center;
 }
 
 .recipe-front-page {
-  border: 1px solid black;
   margin: auto;
   text-align: center;
   display: flex;
@@ -106,7 +118,6 @@ a {
 .user-front-page {
   background-image: url("../imgs/plaid_@2X.png");
   width: 85%;
-  border: 1px solid black;
   margin: auto;
 /*  position: fixed;
   top: 0;*/
@@ -128,4 +139,16 @@ a {
 .user-message {
   color: red;
   display: inline;
+}
+
+.create-recipe-form {
+  margin-top: 60px;
+}
+
+.create-recipe-form input {
+  font-size: large;
+}
+
+.recipe-instructions {
+  font-size: large;
 }

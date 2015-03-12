@@ -6,6 +6,11 @@
       <input id="search" type="submit" value="Search">
     </div>
   </form>
+  <% if @message %>
+  <div class="user-message">
+    <h4><%= @message %></h4>
+  </div>
+  <% end %>
   <div id="results">
   </div>
 </div>

@@ -1,3 +1,4 @@
+<div class="user-front-page">
 <h1> <%= recipe.name %></h1>
 <img src="<%= recipe.json['images'][0]['imageUrlsBySize']['360'] %>" alt="<%= recipe.id %>">
 <% recipe.json["ingredientLines"].each do |ingredient| %>
@@ -13,3 +14,4 @@
 <form action="/user/<%= current_user.id %>/recipe/<%= recipe.json["id"] %>/save" method="post">
   <input type="submit" value="Save to Shopping List!">
 </form>
+</div>
