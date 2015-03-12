@@ -29,12 +29,28 @@
   <%= yield %>
 
   <script id="recipe-template" type="text/x-handlebars-template">
-  <div class="each-result">
+    <div class="each-result">
     <h3><a class="viewRecipe" href="/recipe/search/{{recipeId}}">{{recipeName}}</h3>
-      <img class="recipe-img" src={{imgUrl}}></a>
+      <img class="recipe-img" src="{{imgUrl}}"></a>
       <h5>rating: {{rating}} stars</h5>
       <h5>Total Time: {{time}} minutes</h5>
     </div>
   </script>
 </body>
 </html>
+
+
+
+<!--       <div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img class="recipe-img" src="{{imgUrl}}">
+      <div class="caption">
+        <h3><a class="viewRecipe" href="/recipe/search/{{recipeId}}">{{recipeName}}</h3>
+        <p>rating: {{rating}} stars</p>
+        <p>Total Time: {{time}} minutes</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div> -->

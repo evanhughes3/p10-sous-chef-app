@@ -7,7 +7,6 @@ body {
 a {
   text-decoration: none !important;
 }
-
 .form-group {
   padding: 5px 200px;
 }
@@ -100,6 +99,12 @@ a {
   text-align: center;
 }
 
+.welcome-text {
+  width: 50%;
+  margin: auto;
+  padding-top: 20px;
+}
+
 .recipe-front-page {
   margin: auto;
   text-align: center;
@@ -119,6 +124,7 @@ a {
   background-image: url("../imgs/plaid_@2X.png");
   width: 85%;
   margin: auto;
+  padding-top: 20px;
 /*  position: fixed;
   top: 0;*/
   text-align: center;
@@ -127,13 +133,13 @@ a {
 .btn-clear-list {
   position: absolute;
   right: 130px;
-  top: 130px;
+  top: 116px;
 }
 
 .btn-text-list {
   position: absolute;
   left: 130px;
-  top: 130px;
+  top: 116px;
 }
 
 .user-message {

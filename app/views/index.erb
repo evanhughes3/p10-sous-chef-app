@@ -4,11 +4,13 @@
     <% if current_user %>
     <div class="user-front-page">
       <div class="welcome">
-        <h1> Welcome <%= current_user.first_name.capitalize %> </h1>
-        <% if @message %>
+        <div class="welcome-text">
+          <h1> Welcome <%= current_user.first_name.capitalize %> </h1>
+            <% if @message %>
           <div class="user-message">
             <h4><%= @message %></h4>
           </div>
+        </div>
         <% end %>
 
         <% if current_user.recipes.empty? %>
@@ -39,7 +41,7 @@
         <% end %>
       </div>
     </div>
-
+    <% if !current_user.recipes.empty? %>
     <div>
       <form action="/users/<%= current_user.id %>/list/delete" method="post" class="front-page-button">
         <button type="submit" class="btn-lg btn-clear-list btn-danger">Clear Shopping List</button>
@@ -50,6 +52,7 @@
         <button type="submit" class="btn-lg btn-text-list btn-success">Send Shopping List to Phone!</button>
       </form>
     </div>
+    <% end %>
 
     <% else %>
 

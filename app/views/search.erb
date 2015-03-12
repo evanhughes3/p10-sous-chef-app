@@ -6,11 +6,20 @@
       <input id="search" type="submit" value="Search">
     </div>
   </form>
-  <% if @message %>
-  <div class="user-message">
-    <h4><%= @message %></h4>
-  </div>
+  <% if current_user %>
+    <% if @message %>
+      <div class="user-message">
+      <h4><%= @message %></h4>
+    </div>
   <% end %>
+
   <div id="results">
   </div>
+
+  <% else %>
+  <h3 class="user-message">
+    You must be <a href="/login">logged in </a>to use the search feature
+  </h3>
+<% end %>
+
 </div>

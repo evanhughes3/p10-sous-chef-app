@@ -1,17 +1,17 @@
 <div class="user-front-page">
-<h1> <%= recipe.name %></h1>
-<img src="<%= recipe.json['images'][0]['imageUrlsBySize']['360'] %>" alt="<%= recipe.id %>">
-<% recipe.json["ingredientLines"].each do |ingredient| %>
+  <h1> <%= recipe.name %></h1>
+  <img src="<%= recipe.json['images'][0]['imageUrlsBySize']['360'] %>" alt="<%= recipe.id %>">
+  <% recipe.json["ingredientLines"].each do |ingredient| %>
   <h4><%= ingredient %></h4>
-<% end %>
+  <% end %>
 
-<h4> Yield: <%= recipe.json["yield"] %></h4>
-<h4> Total Time: <%= recipe.json["totalTime"] %></h4>
-<h4> Rating: <%= recipe.json["rating"] %></h4>
-<h4> Number of Servings: <%= recipe.json["numberOfServings"] %></h4>
-<h4><a href="<%= recipe.json["source"]['sourceRecipeUrl'] %>" target="_blank">Click Here For Directions</a></h4>
+  <h4> Yield: <%= recipe.json["yield"] %></h4>
+  <h4> Total Time: <%= recipe.json["totalTime"] %></h4>
+  <h4> Rating: <%= recipe.json["rating"] %></h4>
+  <h4> Number of Servings: <%= recipe.json["numberOfServings"] %></h4>
+  <h4><a href="<%= recipe.json["source"]['sourceRecipeUrl'] %>" target="_blank">Click Here For Directions</a></h4>
 
-<form action="/user/<%= current_user.id %>/recipe/<%= recipe.json["id"] %>/save" method="post">
-  <input type="submit" value="Save to Shopping List!">
-</form>
+  <form action="/user/<%= current_user.id %>/recipe/<%= recipe.json["id"] %>/save" method="post">
+    <button class="btn-lg btn-success" type="submit">Save to Shopping List!</button>
+  </form>
 </div>
