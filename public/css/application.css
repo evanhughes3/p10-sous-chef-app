@@ -48,3 +48,25 @@ body {
 .logo {
   max-width: 110px;
 }
+
+.welcome {
+  border: 1px solid black;
+  width: 75%;
+  margin: auto;
+  text-align: center;
+}
+
+.recipe-front-page {
+  border: 1px solid black;
+  width: 75%;
+  margin: auto;
+  text-align: center;
+  display: table;
+  vertical-align: baseline;
+}
+
+.each-recipe {
+  display: inline-block;
+  padding: 70px;
+  display: table-cell;
+}
