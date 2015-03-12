@@ -27,7 +27,7 @@ get '/signup' do
 end
 
 post '/signup' do
-  user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], username: params[:username], password: params[:password])
+  user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], username: params[:username], phone_number: params[:phone_number], password: params[:password])
 
   if user.save
     session[:id] = user.id
@@ -74,7 +74,7 @@ end
 
 get '/recipe/search/:id' do
   recipe = Yummly.find(params[:id])
-  erb :recipe_page, layout: false, :locals => {:recipe => recipe}
+  erb :recipe_page, :locals => {:recipe => recipe}
 end
 
 get '/recipe/display/:id' do
@@ -82,7 +82,16 @@ get '/recipe/display/:id' do
   p recipe
 
   erb :your_recipe_page, :locals => {:recipe => recipe}
+end
 
+post '/recipe/:id/delete' do
+  recipe = Recipe.find(params[:id])
+  recipe.destroy
+
+  flash[:notice] = "#{recipe.name} has been removed"
+  @message = flash[:notice]
+
+  redirect '/'
 end
 
 get '/searchResults/:keywords' do

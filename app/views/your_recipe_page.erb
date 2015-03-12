@@ -8,9 +8,11 @@
   <h4><%= ingredient.name %></h4>
 <% end %>
 
-<h4><%= recipe.instructions %></h4>
+<% if recipe.instructions %>
+<h4>Instructions: <%= recipe.instructions %></h4>
+<% else %>
+<h4>Instructions: <a href="<%= recipe.recipe_url %>">Click here for recipe</a></h4>
+<% end %>
 
-<h4><a href="<%= recipe.recipe_url %>">Click here for recipe</a></h4>
-
-<a href="/"><button>Back</button></a>
+<a href="/"><button class="btn-lg btn-info">Back</button></a>
 <div>

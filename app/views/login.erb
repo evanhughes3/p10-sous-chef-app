@@ -1,16 +1,3 @@
-
-<!-- <form action="/login" method="post">
-  <input type="text" name="username" placeholder="username">
-  <input type="text" name="password" placeholder="password">
-  <input type="submit" value="submit">
-</form>
--->
-<!-- <form action="/login" method="post">
-<div class="form-group">
-    <input type="text" name="username" class="form-control" placeholder="Username">
-    <input type="password" name="password" class="form-control" placeholder="Password">
-  </div>
-</form> -->
 <% if @message %>
   <h4 class="error-message"><%= @message %></h4>
 <% end %>
@@ -19,6 +6,7 @@
   <% if @error %>
   <div class="errors"><%= @error %></div>
   <% end %>
+
   <form action="/login" method="post" role="form">
     <div class="form-group">
       <label for="email">Username</label>

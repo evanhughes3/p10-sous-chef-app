@@ -1,9 +1,29 @@
 body {
-  background-image: url("../imgs/45degreee_fabric.png");
+  background-image: url("../imgs/plaid_@2X.png");
+  padding-top: 55px;
+  font-family: 'Signika', sans-serif;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 .form-group {
   padding: 5px 200px;
+}
+
+.navbar {
+  font-size: 20px;
+}
+
+.nav {
+  margin-left: 20px;
+}
+
+.navbar-btn{
+  margin-left: 15px;
+  font-size: 15px;
+  font-style: comic-sans;
 }
 
 .form-container {
@@ -18,13 +38,10 @@ body {
 
 }
 
-#search-bar {
-}
-
 #input-text {
   height: 40px;
   width: 400px;
-  font-size: medium;
+  font-size: x-large;
 
 }
 
@@ -38,7 +55,10 @@ body {
 }
 
 #results {
-
+  display: flex;
+  flex-grow: 4;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 
 .recipe-img {
@@ -46,27 +66,66 @@ body {
 }
 
 .logo {
-  max-width: 110px;
+  max-width: 150px;
+}
+
+.container {
+  background-image: url("../imgs/produce.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 1000px;
+  text-align: center;
+}
+
+.main-img {
+  margin-top: 100px;
+  width: 70%;
 }
 
 .welcome {
   border: 1px solid black;
-  width: 75%;
-  margin: auto;
   text-align: center;
 }
 
 .recipe-front-page {
   border: 1px solid black;
-  width: 75%;
   margin: auto;
   text-align: center;
-  display: table;
+  display: flex;
+  flex-grow: 2;
+  flex-flow: row wrap;
+  justify-content: space-around;
   vertical-align: baseline;
 }
 
 .each-recipe {
   display: inline-block;
-  padding: 70px;
-  display: table-cell;
+  margin: 70px ;
+}
+
+.user-front-page {
+  background-image: url("../imgs/plaid_@2X.png");
+  width: 85%;
+  border: 1px solid black;
+  margin: auto;
+/*  position: fixed;
+  top: 0;*/
+  text-align: center;
+}
+
+.btn-clear-list {
+  position: absolute;
+  right: 130px;
+  top: 130px;
+}
+
+.btn-text-list {
+  position: absolute;
+  left: 130px;
+  top: 130px;
+}
+
+.user-message {
+  color: red;
+  display: inline;
 }

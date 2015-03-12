@@ -6,8 +6,8 @@ $(document).ready(function() {
   // when we try to bind to them
   $("#search-form").submit(function(event){
     event.preventDefault();
-    APP_ID = 'b68a708c'
-    APP_KEY = 'c990231d1ec74289fff36220ae4ba6fb'
+    // APP_ID = 'b68a708c'
+    // APP_KEY = 'c990231d1ec74289fff36220ae4ba6fb'
     var keywords = $('#input-text').val();
     console.log(keywords)
     // var url = "http://www.yummly.com/v1/api/recipes?q="+keywords+"&_app_id=" + APP_ID + "&_app_key=" + APP_KEY + "&";
@@ -30,7 +30,7 @@ $(document).ready(function() {
     })
   })
 
-  $('body').on('click', '.viewRecipe', displayRecipe);
+  // $('body').on('click', '.viewRecipe', displayRecipe);
 
 
   $('.create-recipe-form').on("submit", function(event){
@@ -93,23 +93,22 @@ function displayAllRecipes(response) {
     var html    = template(context);
     $('#results').append(html)
   })
-
 }
 
-function displayRecipe(response) {
-  event.preventDefault()
-  id = $(this).attr('href')
-  $.ajax({
-    type: 'GET',
-    url: '/recipe/search/' + id,
-  }).done(function(response){
-    console.log("made it through");
-    console.log(response)
-    $('#results').children().remove();
-    $('#results').append(response);
-  }).fail(function(response){
-    console.log("failed display recipe")
-    console.log(response)
-  })
+// function displayRecipe(response) {
+//   event.preventDefault()
+//   id = $(this).attr('href')
+//   $.ajax({
+//     type: 'GET',
+//     url: '/recipe/search/' + id,
+//   }).done(function(response){
+//     console.log("made it through");
+//     console.log(response)
+//     $('#results').children().remove();
+//     $('#results').append(response);
+//   }).fail(function(response){
+//     console.log("failed display recipe")
+//     console.log(response)
+//   })
 
-}
+// }
