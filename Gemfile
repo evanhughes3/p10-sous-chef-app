@@ -20,7 +20,6 @@ gem 'bcrypt'
 gem 'hirb'
 gem 'twilio-ruby'
 gem 'dotenv'
-gem 'httparty'
 gem 'rack-flash3'
 
 group :test do
