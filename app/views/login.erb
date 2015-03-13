@@ -1,10 +1,6 @@
-<% if @message %>
-  <h4 class="error-message"><%= @message %></h4>
-<% end %>
-
 <div class="form-container">
-  <% if @error %>
-  <div class="errors"><%= @error %></div>
+  <% if @message %>
+  <h4 class="user-message"><%= @message %></h4>
   <% end %>
 
   <form action="/login" method="post" role="form">

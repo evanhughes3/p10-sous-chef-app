@@ -15,7 +15,8 @@ $(document).ready(function() {
       displayAllRecipes(response)
     })
     .fail(function(response){
-      console.log("display recipes failed")
+      $('#results').empty();
+      $('#results').append("<h3 class='user-message'>No results were found</h3>");
     })
   })
 
@@ -30,16 +31,13 @@ $(document).ready(function() {
     })
     var recipeName = $('.recipe-name').val()
     var recipeInstructions = $('.recipe-instructions').val()
-    console.log(ingredient_array)
-    console.log(recipeName)
-    console.log(recipeInstructions)
 
     $.ajax ({
       type: "POST",
       url: "/recipe/create",
       data: {ingredient : ingredient_array, recipe_name : recipeName, instructions : recipeInstructions}
     })
-    .done(function(){
+    .done(function(response){
       console.log("Success create recipe")
       window.location.replace('/') //SORRY!! count't figure out any other way to do this...
     })

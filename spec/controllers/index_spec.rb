@@ -1,4 +1,8 @@
-describe 'GET /' do
+require 'spec_helper'
+enable :sessions
+
+describe 'POST /' do
+  include Rack::Test::Methods
 
   before do
     User.delete_all
@@ -8,19 +12,41 @@ describe 'GET /' do
 
   before(:each) do
     evan = User.create(
+      id: 1,
       username: "evan",
-      password_hash: "lala",
+      password: "lala",
       email: "evanhughes3@gmail.com",
       phone_number: "15101001234",
       first_name: "Evan",
       last_name: "Hughes"
       )
+    tomatoes = Ingredient.create(
+      name: "4 fresh tomatoes"
+      )
+    bread = Ingredient.create(
+      name: "1 loaf of bread"
+      )
+    recipe = Recipe.create(
+      name: "Pasta and tomatoes",
+      instructions: "Put tomatoes on some bread and enjoy!"
+      )
+    recipe.ingredients << tomatoes
+    recipe.ingredients << bread
+    evan.recipes << recipe
+    session[:id] = 1
   end
 
-  context "login" do
-    it "takes them to the login page" do
-      get '/login'
-      expect(last_response.body).to include("password")
+  context "recipe/create" do
+    it "creates a new recipe" do
+
+      params = {
+        name: "Bread and cheese",
+        instructions: "Put cheese on some bread",
+        ingredients: ["Cheese", "Bread"],
+      }
+      post '/recipe/create', params
+
+      expect{last_response}.to change{Recipe.count}.by(1)
     end
   end
 

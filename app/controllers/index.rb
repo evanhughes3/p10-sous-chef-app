@@ -51,9 +51,6 @@ get '/recipe/new' do
 end
 
 post '/recipe/create' do
-
-  p params
-
   user = User.find(session[:id])
 
   recipe = Recipe.create(name: params[:recipe_name], instructions: params[:instructions])
@@ -63,10 +60,8 @@ post '/recipe/create' do
   end
 
   user.recipes << recipe
-  p user.recipes
 
   flash[:notice] = "You created a new recipe: #{recipe.name}"
-
 end
 
 get '/recipe/search' do
@@ -101,14 +96,7 @@ get '/searchResults/:keywords' do # => TODO
   url = "http://api.yummly.com/v1/api/recipes?_app_id=#{ENV['APP_ID']}&_app_key=#{ENV['APP_KEY']}&q=#{keywords}&requirePictures=true&maxResult=100&start=10";
   response = HTTParty.get(url)
 
-  # if response.parsed_response['matches'] == []
-  p "NEW RESPONSE ---------------"
-  p response['matches']
-  if response['matches'].length == 0
-    flash[:notice] = "No search results we're returned"
-    @message = flash[:notice]
-    redirect '/recipe/search'
-  else
+  unless response['matches'].length == 0
     response.parsed_response['matches'].to_json
   end
 end
@@ -156,21 +144,22 @@ end
 
 post "/users/:id/list/send" do
   user = User.find(params[:id])
-  phone_number = user.phone_number #"+15104093210"
+  phone_number = user.phone_number
   all_ingredients = []
   current_user.recipes.each {|recipe| recipe.ingredients.each {|ingredient| all_ingredients << ingredient.name}}
   ingredient_list = all_ingredients.join(", ")
 
   @client = Twilio::REST::Client.new(ENV['TWILIO_ACOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
   @client.account.messages.create({
-                                    :from => '+14154296667',
-                                    :to => phone_number,
-                                    :body => ingredient_list,
+    :from => '+14154296667',
+    :to => phone_number,
+    :body => ingredient_list,
   })
 
   flash[:notice] = "Your list has been sent to your phone!"
 
   @message = flash[:notice]
+
   redirect '/'
 end
 
