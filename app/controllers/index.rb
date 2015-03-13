@@ -133,7 +133,7 @@ post '/user/:id/recipe/:recipe_id/save' do
 
 end
 
-post '/users/:id/list/delete' do
+delete '/users/:id/list/delete' do
   user = User.find(params[:id])
   user.recipes.destroy_all
 

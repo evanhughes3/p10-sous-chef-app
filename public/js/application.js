@@ -43,7 +43,6 @@ $(document).ready(function() {
       console.log("Success create recipe")
       // redirect_url = window.location.protocol + window.location.host + '/'
       // window.location.replace(redirect_url) //SORRY!! count't figure out any other way to do this...
-
     })
     .fail(function(){
       console.log("Failed create recipe")

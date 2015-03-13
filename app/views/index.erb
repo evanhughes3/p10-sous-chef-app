@@ -44,6 +44,7 @@
     <% if !current_user.recipes.empty? %>
     <div>
       <form action="/users/<%= current_user.id %>/list/delete" method="post" class="front-page-button">
+        <input name="_method" type="hidden" value="delete" />
         <button type="submit" class="btn-lg btn-clear-list btn-danger">Clear Shopping List</button>
       </form>
     </div>
