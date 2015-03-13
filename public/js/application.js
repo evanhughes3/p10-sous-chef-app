@@ -41,8 +41,7 @@ $(document).ready(function() {
     })
     .done(function(){
       console.log("Success create recipe")
-      // redirect_url = window.location.protocol + window.location.host + '/'
-      // window.location.replace(redirect_url) //SORRY!! count't figure out any other way to do this...
+      window.location.replace('/') //SORRY!! count't figure out any other way to do this...
     })
     .fail(function(){
       console.log("Failed create recipe")
@@ -64,10 +63,10 @@ $(document).ready(function() {
     event.preventDefault()
     ingredient_name = $('.ingredient-text').val()
 
+    //MOVE TO ERB!! THIS SUCKS!
     counter += 1
     $(this).remove()
     $('.add-ingredient-form').append("<div class='form-group'><label for='exampleInputPassword1'>Ingredient " + counter + "</label><input type='text' name='ingredient_name' class='form-control ingredient-text' placeholder='e.g. 2 cups of flour'></div><div class='form-group'><button class='add-ingredient-button'>Add Ingredient</button></div>");
-
   })
 
 });
