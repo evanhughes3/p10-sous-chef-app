@@ -75,6 +75,7 @@ end
 
 get '/recipe/search/:id' do
   recipe = Yummly.find(params[:id])
+
   erb :recipe_page, :locals => {:recipe => recipe}
 end
 
@@ -96,17 +97,27 @@ post '/recipe/:id/delete' do
 end
 
 get '/searchResults/:keywords' do # => TODO
-  keywords = params[:keywords]
+  keywords = params[:keywords].split(" ").join("+")
   url = "http://api.yummly.com/v1/api/recipes?_app_id=#{ENV['APP_ID']}&_app_key=#{ENV['APP_KEY']}&q=#{keywords}&requirePictures=true&maxResult=100&start=10";
   response = HTTParty.get(url)
 
-  if response.parsed_response['matches'] == []
+  # if response.parsed_response['matches'] == []
+  p "NEW RESPONSE ---------------"
+  p response['matches']
+  if response['matches'].length == 0
     flash[:notice] = "No search results we're returned"
     @message = flash[:notice]
     redirect '/recipe/search'
   else
     response.parsed_response['matches'].to_json
   end
+end
+
+get '/add/form/ingredient' do
+  ingredient = params[:ingredient_name]
+  p params[:ingredient_name]
+
+  erb :_create_ingredient_form, layout: false, :locals => {ingredient: ingredient}
 end
 
 post '/user/:id/recipe/:recipe_id/save' do

@@ -55,18 +55,25 @@ $(document).ready(function() {
     });
 
 
-
-
-
-  var counter = 1
   $('body').on('click', '.add-ingredient-button', function(event){
     event.preventDefault()
-    ingredient_name = $('.ingredient-text').val()
+    var buttonToRemove = (this)
+    console.log(this);
+    var ingredient_name = $('.ingredient-text').val()
+    $.ajax({ //AJAX CALL NOT WORKING AFTER 1ST click
+      type: "get",
+      url: '/add/form/ingredient',
+      data: {ingredient: ingredient_name},
+    })
+    .done(function(response){
+      console.log("made it done")
+      $(buttonToRemove).remove()
+      $('.add-ingredient-form').append(response)
 
-    //MOVE TO ERB!! THIS SUCKS!
-    counter += 1
-    $(this).remove()
-    $('.add-ingredient-form').append("<div class='form-group'><label for='exampleInputPassword1'>Ingredient " + counter + "</label><input type='text' name='ingredient_name' class='form-control ingredient-text' placeholder='e.g. 2 cups of flour'></div><div class='form-group'><button class='add-ingredient-button'>Add Ingredient</button></div>");
+     })
+    .fail(function(){
+      console.log("failed")
+    })
   })
 
 });

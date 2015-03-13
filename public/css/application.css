@@ -131,6 +131,8 @@ a {
 /*  position: fixed;
   top: 0;*/
   text-align: center;
+  border-radius: 30px;
+  padding-bottom: 20px;
 }
 
 .btn-clear-list {
@@ -152,12 +154,18 @@ a {
 
 .create-recipe-form {
   margin-top: 60px;
+  padding-top: 10px;
 }
 
 .create-recipe-form input {
   font-size: large;
 }
 
+.create-recipe-title {
+  text-align: center;
+}
+
 .recipe-instructions {
   font-size: large;
 }
+

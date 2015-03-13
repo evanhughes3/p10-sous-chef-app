@@ -1,14 +1,16 @@
-<% if @message %>
-<div class="errors"><%= @error %></div>
-<% end %>
 <div class="create-recipe-form">
+  <% if current_user %>
+    <% if @message %>
+      <div class="errors"><%= @error %></div>
+    <% end %>
+  <h1 class="create-recipe-title">Create your own Recipe!</h3>
 <form class="create-recipe-form" action="/">
   <div class="form-group">
     <label for="exampleInputEmail1">Recipe Name</label>
     <input type="text" class="form-control recipe-name" id="exampleInputEmail1">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Ingredient 1</label>
+    <label for="exampleInputPassword1">Ingredient</label>
     <input type="text" class="form-control ingredient-text" placeholder="e.g. 2 cups of flour">
   </div>
   <div class="form-group">
@@ -24,6 +26,9 @@
   </div>
 </form>
 </div>
+<% else %>
+<h3 class="user-message">You must be <a href="/login"> logged in </a>or <a href="/signup">signed up </a>to create a recipe</h3>
+<% end %>
 
 <!-- name="recipe[name]"
  name="ingredient_name"

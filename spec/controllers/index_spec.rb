@@ -1,13 +1,33 @@
-# describe 'GET /'
+describe 'GET /' do
+
+  before do
+    User.delete_all
+    Recipe.delete_all
+    Ingredient.delete_all
+  end
+
+  before(:each) do
+    evan = User.create(
+      username: "evan",
+      password_hash: "lala",
+      email: "evanhughes3@gmail.com",
+      phone_number: "15101001234",
+      first_name: "Evan",
+      last_name: "Hughes"
+      )
+  end
+
+  context "login" do
+    it "takes them to the login page" do
+      get '/login'
+      expect(last_response.body).to include("password")
+    end
+  end
+
+end
 
 
-# require 'spec_helper'
 
-# describe 'GET /widgets' do
-
-#   before do
-#     Widget.delete_all
-#   end
 
 #   context "when a user is not logged in" do
 #     it "displays all widgets" do
