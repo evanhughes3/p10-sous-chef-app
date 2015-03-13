@@ -163,7 +163,9 @@ post "/users/:id/list/send" do
   redirect '/'
 end
 
-
+after do
+  ActiveRecord::Base.clear_active_connections!
+end
 
 # recipe = Recipe.create(params[:recipe])
 #   ingredient = Ingredient.create(params[:ingredient])
