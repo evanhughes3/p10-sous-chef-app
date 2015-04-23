@@ -1,5 +1,7 @@
 # Sous-Chef
 
+![Sous-Chef](http://res.cloudinary.com/drd0r2vfh/image/upload/v1429243638/sous_chef_riw2af.png)
+
 ## Description
 *Sous-Chef is an app where online recipe lovers can assemble all their recipes for the week, and have their shopping list texted to their phone.*
 
